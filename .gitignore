@@ -1,0 +1,22 @@
+# 编译产物：不进版本库。test/verify.sh 发现没有 .class 会自动调 build.sh
+*.class
+
+# 第三方材料：版权归原作者，不随仓库分发，需自行放入（见 NOTICE / README「准备依赖」）
+simulator/logisim.jar
+circuits/cs3410.jar
+circuits/mips-probe.jar
+docs/lab-guide.docx
+docs/MIPS-C-ISA.pdf
+
+# 测试运行时产生的文件（不属于电路本身）
+test/.prefs/
+test/.fp_now.txt
+test/.last-good.circ
+circuits/_verify_tmp.circ
+
+# 系统垃圾
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
