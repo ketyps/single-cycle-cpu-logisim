@@ -1,19 +1,45 @@
-# 第三方材料说明
+# 第三方材料与许可范围
 
-本仓库的**代码、电路与文档**（`circuits/*.circ`、`test/`、`docs/`、`README.md`）以 MIT 许可发布，
-见 [LICENSE](LICENSE)。
+## MIT 覆盖哪些
 
-下面这些材料**版权归各自原作者**，不属于上述许可范围，也**不随本仓库分发**：
+见 [LICENSE](LICENSE)。MIT 只覆盖**本人独立完成**的部分：
 
-| 材料 | 说明 | 获取方式 |
+- `circuits/cpu-completed.circ` 里本人新增的内容：`NPC`、`EXT` 两个子电路，以及 `CTRL2`（`GCN` + `GCS`）控制器
+- `test/` 下的测试脚本与 Java 工具
+- `docs/`、`README.md`
+
+`cpu-completed.circ` 是在课程模板上改出来的，模板原有的结构和元件布置仍归课程方，MIT 只覆盖新增部分。
+
+## 不在 MIT 范围内
+
+下面这些**版权归课程方或各自原作者**，不适用 MIT：
+
+| 文件 / 材料 | 来源 | 是否随仓库分发 |
 |---|---|---|
-| Logisim 2.15（定制版） | 电路编辑与仿真工具；本电路的元件与存档格式依赖该版本 | 课程资料提供；Logisim 上游见 <http://www.cburch.com/logisim/>（GPLv2） |
-| `cs3410.jar` | Cornell CS3410 课程配套元件库，电路文件按文件名引用 | 课程资料提供 |
-| `mips-probe.jar` | 探针 / LED 元件库，电路文件按文件名引用 | 课程资料提供 |
-| 实验指导书（docx） | 课程实验文档 | 课程资料提供 |
-| MIPS-C 指令集手册（pdf） | 查阅 opcode / funct 用 | 课程资料提供 |
+| `circuits/cpu-template.circ` | 课程随实验资料分发的空模板（`NPC` 与 `EXT` 未实现） | **是**，理由见下节 |
+| `circuits/alu_wjz_BUAA.circ` | 课程随附的 ALU 子电路 | **是**，理由见下节 |
+| `circuits/storage_DM_wjz.circ` | 课程随附的数据存储器子电路 | **是**，理由见下节 |
+| Logisim 2.15（定制版） | 电路编辑与仿真工具，本电路的元件与存档格式依赖该版本 | 否 |
+| `cs3410.jar` | Cornell CS3410 课程配套元件库 | 否 |
+| `mips-probe.jar` | 探针 / LED 元件库 | 否 |
+| 实验指导书（docx） | 课程实验文档 | 否 |
+| MIPS-C 指令集手册（pdf） | 查阅 opcode / funct 用 | 否 |
 
-仓库里保留了这些文件在电路中的**引用关系**（`<lib desc="jar#cs3410.jar#...">` 等），
+## 三个 `.circ` 为什么留在仓库里
+
+这三个文件都来自课程分发的压缩包，**不是本人作品** —— 文件名里的 `wjz`、`BUAA` 是原作者标记
+（`BUAA` 为外校缩写，`wjz` 为原作者姓名缩写），与本人无关。保留它们各有原因：
+
+- `alu_wjz_BUAA.circ`、`storage_DM_wjz.circ`：`cpu-completed.circ` 以 `file#` 方式**硬引用**这两个文件，
+  删掉电路直接打不开，只能一并保留。
+- `cpu-template.circ`：课程给的起始骨架，留着是为了让「哪些是模板原有的、哪些是本人加的」有据可对照，
+  该文件内不含任何实现答案。
+
+如果课程方要求撤下这三份材料，删文件即可；前两个删掉后电路会打不开，需要自行从课程资料取回。
+
+## 未随仓库分发的材料放哪
+
+仓库保留了这些文件在电路里的**引用关系**（`<lib desc="jar#cs3410.jar#...">` 等），
 所以拿到文件后必须放到下面这些位置，路径和文件名都不能改：
 
 ```
@@ -23,14 +49,6 @@ circuits/mips-probe.jar
 ```
 
 缺少这些文件时，`bash test/verify.sh` 会直接指出缺哪一个，不会抛 Java 异常。
-
-## 关于本仓库的电路
-
-`circuits/cpu-completed.circ` 基于课程提供的空模板（`circuits/cpu-template.circ`）搭建，
-新增内容是 `NPC`、`EXT` 两个子电路和 `CTRL2`（`GCN` + `GCS`）控制器。
-
-`circuits/storage_DM_wjz.circ`、`circuits/alu_wjz_BUAA.circ` 为同课程前置实验的产物，
-主电路以 `file#` 方式引用，故一并保留。
 
 ## 课程作业说明
 

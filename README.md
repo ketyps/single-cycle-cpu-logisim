@@ -44,9 +44,9 @@
 single-cycle-cpu-logisim/
 ├── circuits/
 │   ├── cpu-completed.circ     成品电路（14 条指令全部实现）
-│   ├── cpu-template.circ      课程提供的空模板（NPC 与 EXT 未实现）
-│   ├── storage_DM_wjz.circ    数据存储器子电路（主电路按文件名引用）
-│   ├── alu_wjz_BUAA.circ      ALU 子电路（主电路按文件名引用）
+│   ├── cpu-template.circ      课程空模板，NPC 与 EXT 未实现（课程随附）
+│   ├── storage_DM_wjz.circ    数据存储器子电路，被主电路硬引用（课程随附）
+│   ├── alu_wjz_BUAA.circ      ALU 子电路，被主电路硬引用（课程随附）
 │   └── *.jar                  元件库，需自行放入，见「准备依赖」
 ├── docs/
 │   ├── testing.md             测试方法、覆盖范围与局限
@@ -264,8 +264,12 @@ NPC = raSel  ? RA  : I2
 
 ## 第三方材料与许可
 
-本仓库的**代码、电路和文档**（`circuits/*.circ`、`test/`、`docs/`）以 MIT 许可发布，见 [LICENSE](LICENSE)。
-Logisim 本身、`cs3410.jar`、`mips-probe.jar` 以及课程指导书、指令集手册版权归各自原作者，
-不随本仓库分发，获取方式见 [NOTICE](NOTICE)。
+MIT（见 [LICENSE](LICENSE)）只覆盖本人独立完成的部分：`circuits/cpu-completed.circ` 里新增的
+`NPC` / `EXT` 子电路与 `CTRL2` 控制器、`test/`、`docs/`。
 
-电路基于课程提供的空模板搭建；`storage_DM_wjz.circ`、`alu_wjz_BUAA.circ` 为同课程前置实验的产物。
+**不适用 MIT** 的是课程随附材料：`circuits/` 下的 `cpu-template.circ`、`alu_wjz_BUAA.circ`、
+`storage_DM_wjz.circ` 三个文件都来自课程分发的压缩包，不是本人作品（文件名里的 `wjz`、`BUAA`
+是原作者标记）；后两个被主电路以 `file#` 硬引用，删掉电路就打不开，所以一并保留。
+Logisim、`cs3410.jar`、`mips-probe.jar`、指导书与指令集手册同样归原作者所有，且不随仓库分发。
+
+完整的来源、许可与放置路径见 [NOTICE](NOTICE)。
